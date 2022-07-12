@@ -162,6 +162,8 @@ head(comm_traits)
 comm_total <- merge(comm_traits, envir_coord, by = "Sites")
 head(comm_total)
 
+if(!dir.exists("data/processed")) dir.create("data/processed")
+
 # Finally, we end our script writing the modified table. We will use the function `write.csv()`.
 write.csv(x = comm_total,
           file = "data/processed/03_Pavoine_full_table.csv",
