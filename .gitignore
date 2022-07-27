@@ -6,6 +6,7 @@
 
 # Avoid adding html
 *.html
+*.zip
 
 # AVoid folders
 
