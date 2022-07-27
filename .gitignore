@@ -6,3 +6,8 @@
 
 # Avoid adding html
 *.html
+
+# AVoid folders
+
+data/shapefiles
+data/raster
