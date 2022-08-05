@@ -10,29 +10,44 @@ five_most_abundant <- sort(colSums(comm), decreasing = TRUE)[2:6]
 sites_abundant <- data.frame("Species" = (comm[,1]), "Abundance" = rowSums(comm[,2:ncol(comm)]>0))
 # EJercicio 3
 # Encontrar la especie más abundante en cada sitio
-res <- list()
-for(i in 1:nrow(comm)-1){
-  res <-  append(res, names(sort(comm[i+1,2:ncol(comm)], decreasing = TRUE)[1]))
+result <- list()
+for(i in 1:nrow(comm)){
+  result <-  append(result, names(sort(comm[i,2:ncol(comm)], decreasing = TRUE)[1]))
 }
-species_most_abundant <- data.frame("Site" = 1:97, "Specie" = array(unlist(res)))
+species_most_abundant <- data.frame("Site" = 1:97, "Specie" = array(unlist(result)))
 
-# Shannon diversity index
+# Shannon diversity index función corregida Andrea
 my_shannon <- function(x){
   pi <- x/sum(x)
-  H <- sum(pi*log(pi))
+  H <- sum(pi*log(pi[pi!=0]))
+  return(H)
 }
 
-# Simpson diversity index
+# Simpson diversity index función corregida Andrea
 my_simpson <- function(x){
   pi <- x/sum(x)
   Simp <- 1-sum(pi^2)
 }
 
-# Inverse simpson diversity index
+# Inverse simpson diversity index función corregida Andrea
 inverse_simpson <- function(x){
   pi <- x/sum(x)
   Simp <- 1/sum(pi^2)
 }
+
+shannon_idx <- vector()
+simpson_idx <- vector()
+isimpson_idx <- vector()
+for(i in 1:nrow(comm)){
+  shannon_idx[i] <- my_shannon(comm[i,2:ncol(comm)])
+  simpson_idx[i] <- my_simpson(comm[i,2:ncol(comm)])
+  isimpson_idx[i] <- inverse_simpson(comm[i,2:ncol(comm)])
+}
+
+Index <- data.frame("Site" = 1:97, "Shannon Index" = shannon_idx,
+                    "Simpson Index" = simpson_idx,
+                    "Inverse Simpson Index" = isimpson_idx)
+Index
 
 # Clase del 3 de agosto
 Community.A <- c(10, 6, 4, 1)
