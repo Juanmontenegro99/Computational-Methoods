@@ -1,3 +1,10 @@
+# ------------------------------------------------------#
+# Scientific computing
+# ICTP/Serrapilheira 2022
+# Population ecology: using deSolve to solve ODEs in R
+# First version 2022-07-21
+# ------------------------------------------------------#
+
 # Import libraries
 library(deSolve)
 library(ggplot2) # because we will plot things

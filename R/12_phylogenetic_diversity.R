@@ -1,4 +1,11 @@
-# From taxonomical to functional and phylogenetic diversity in R ----
+# ----------------------------------------------------------------#
+# Scientific computing
+# ICTP/Serrapilheira 2022
+# From taxonomical to functional and phylogenetic diversity in R
+# First version 2022-08-05
+# ----------------------------------------------------------------#
+
+
 # Importing packages
 library(vegan)
 library(cluster)
@@ -70,6 +77,7 @@ tible_ex <- classification_data[[1]] %>%
   filter(rank == "family") %>%
   select(name)
 
+# Create a function that extract the specific family of each species
 extract_family <- function(x){
   if(!is.null(dim(x))){
     y <- x %>%
@@ -79,6 +87,7 @@ extract_family <- function(x){
   }
 }
 
+# Add the family od each specie to the data
 families <- vector()
 for(i in 1:length(classification_data)){
   f <- extract_family(classification_data[[i]])

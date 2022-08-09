@@ -1,18 +1,31 @@
+# ------------------------------------------------------#
+# Scientific computing
+# ICTP/Serrapilheira 2022
+# Introduction to spatial data with R
+# First version 2022-07-26
+# ------------------------------------------------------#
+
 # Introduction to spatial data in R ----
 library(sf)
 library(tmap)
 library(dplyr)
+library(rnaturalearth)
+library(rnaturalearthhires)
+library(raster)
+library(RColorBrewer)
 # Examining an sf object ----
 data(World)
 # package tmap has a syntax similar to ggplot. The functions start all with tm_
 tm_shape(World) +
   tm_borders()
 
+# Analyzing the data
 head(World)
 names(World)
 class(World)
 dplyr::glimpse(World)
 
+# Plotting the map
 plot(World[1])
 plot(World[,1])
 plot(World[1,])
@@ -54,8 +67,6 @@ World %>%
 # install.packages("rnaturalearth")
 # install.packages("remotes")
 # remotes::install_github("ropensci/rnaturalearthhires")
-library(rnaturalearth)
-library(rnaturalearthhires)
 bra <- ne_states(country = "brazil", returnclass = "sf")
 plot(bra)
 
@@ -80,7 +91,6 @@ plot(col)
 plot(col2)
 
 # Loading, ploting, and saving a raster from the disk ----
-library(raster)
 dir.create(path = "data/raster/", recursive = TRUE)
 tmax_data <- getData(name = "worldclim", var = "tmax", res = 10, path = "data/raster/")
 plot(tmax_data)
@@ -90,3 +100,6 @@ dim(tmax_data)
 extent(tmax_data)
 res(tmax_data)
 
+# Display the palletes for plotting.
+display.brewer.all(type = "seq")
+display.brewer.all(type = "div")

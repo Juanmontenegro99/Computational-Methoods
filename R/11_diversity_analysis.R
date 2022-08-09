@@ -1,3 +1,10 @@
+# ------------------------------------------------------#
+# Scientific computing
+# ICTP/Serrapilheira 2022
+# Introduction to biological diversity analysis
+# First version 2022-08-04
+# ------------------------------------------------------#
+
 # Reading the data
 comm <- read.csv("data/raw/cestes/comm.csv")
 dim(comm)
@@ -35,6 +42,7 @@ inverse_simpson <- function(x){
   Simp <- 1/sum(pi^2)
 }
 
+# Calculate the different index for each site
 shannon_idx <- vector()
 simpson_idx <- vector()
 isimpson_idx <- vector()
